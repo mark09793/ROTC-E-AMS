@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useOutletContext } from 'react-router-dom';
+import { useNavigate, useParams, useOutletContext } from 'react-router-dom';
 import { getSemesterAttendance, updateAttendance } from '../../api';
 
 export default function AdminSemesterView() {
+  const navigate = useNavigate();
   const { user } = useOutletContext();
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -50,6 +51,13 @@ export default function AdminSemesterView() {
 
   return (
     <div>
+      <button
+        type="button"
+        onClick={() => navigate('/admin/upload')}
+        style={{ marginBottom: '0.5rem', background: 'var(--navy-light)', color: 'var(--gold-light)', padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}
+      >
+        ← Back to semesters
+      </button>
       <h1 style={{ margin: '0 0 0.25rem', color: 'var(--gold)' }}>{semester.name}</h1>
       <p style={{ marginBottom: '0.75rem', color: 'rgba(245,242,235,0.6)' }}>
         <span style={{ fontWeight: 800, color: 'rgba(245,242,235,0.85)' }}>Monitoring table —</span> 3 excused = 1 absence; 4 absences = Warning; 5+ = Dropped
@@ -97,7 +105,7 @@ export default function AdminSemesterView() {
       </div>
 
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ minWidth: 800, fontSize: '0.85rem' }}>
+        <table style={{ minWidth: 600, fontSize: '0.8rem' }}>
           <thead>
             <tr>
               <th style={{ position: 'sticky', left: 0, background: 'var(--navy-mid)', zIndex: 1 }}>Cadet name</th>
