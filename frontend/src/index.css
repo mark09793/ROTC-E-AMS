@@ -1,0 +1,116 @@
+:root {
+  --navy: #0f1729;
+  --navy-mid: #1a2744;
+  --navy-light: #243553;
+  --gold: #c9a227;
+  --gold-light: #e5c65c;
+  --cream: #f5f2eb;
+  --white: #ffffff;
+  --present: #166534;
+  --absent: #991b1b;
+  --excused: #1e40af;
+  --warning: #b45309;
+  --dropped: #7f1d1d;
+  --font-sans: Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--navy);
+  color: var(--cream);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--gold-light);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  transition: background 0.15s, transform 0.1s;
+}
+button:active {
+  transform: scale(0.98);
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input, select {
+  font-family: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--navy-light);
+  border-radius: 6px;
+  background: var(--navy-mid);
+  color: var(--cream);
+}
+input::placeholder {
+  color: rgba(245, 242, 235, 0.5);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+th, td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--navy-light);
+}
+th {
+  background: var(--navy-mid);
+  font-weight: 600;
+  color: var(--gold);
+}
+tr:hover td {
+  background: rgba(26, 39, 68, 0.6);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.badge-present { background: var(--present); color: white; }
+.badge-absent { background: var(--absent); color: white; }
+.badge-excused { background: var(--excused); color: white; }
+.badge-normal { background: var(--navy-light); color: var(--cream); }
+.badge-warning { background: var(--warning); color: white; }
+.badge-dropped { background: var(--dropped); color: white; }
+
+@keyframes spinJump {
+  0%   { transform: perspective(1000px) rotateY(0deg); }
+  100% { transform: perspective(1000px) rotateY(-360deg); }
+}
+
+.spin-jump-animation {
+  animation: spinJump 4.5s linear infinite;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  transform-origin: 50% 55%;
+  will-change: transform;
+}

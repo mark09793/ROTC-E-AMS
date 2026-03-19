@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: rotc-e-ams
+    runtime: node
+    plan: free
+    buildCommand: cd frontend && npm ci && npm run build && cd ../backend && npm ci
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATA_FILE
+        value: /var/data/data.json
+    disk:
+      name: rotc-e-ams-data
+      mountPath: /var/data
+      sizeGB: 1
