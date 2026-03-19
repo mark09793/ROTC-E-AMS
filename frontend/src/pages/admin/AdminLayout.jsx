@@ -21,17 +21,17 @@ export default function AdminLayout({ user, onLogout }) {
     <div style={{ ...styles.layout, flexDirection: isMobile ? 'column' : 'row', flexWrap: isMobile ? 'nowrap' : 'wrap' }}>
       {isMobile && (
         <div style={styles.mobileTopBar}>
+          <div style={styles.mobileBrandWrap}>
+            <img src="/rotcu-logo.png" alt="ROTCU Logo" style={styles.mobileLogo} />
+            <div style={styles.mobileTitle}>ROTC Attendance</div>
+          </div>
           <button
             type="button"
-            aria-label="Toggle menu"
-            onClick={() => setSidebarOpen((v) => !v)}
-            style={styles.burger}
+            onClick={onLogout}
+            style={styles.mobileLogout}
           >
-            <span style={styles.burgerLine} />
-            <span style={styles.burgerLine} />
-            <span style={styles.burgerLine} />
+            Log out
           </button>
-          <div style={styles.mobileTitle}>ROTC Attendance</div>
         </div>
       )}
       {!isMobile && (
@@ -96,13 +96,6 @@ export default function AdminLayout({ user, onLogout }) {
                 Accounts
               </button>
             )}
-            <button
-              type="button"
-              style={{ ...styles.mobileNavButton, background: 'var(--navy-light)', color: 'var(--gold-light)' }}
-              onClick={onLogout}
-            >
-              Log out
-            </button>
           </div>
         )}
         <Outlet context={{ user }} />
@@ -126,9 +119,19 @@ const styles = {
     zIndex: 20,
   },
   mobileTitle: {
-    fontSize: '0.95rem',
+    fontSize: '0.9rem',
     fontWeight: 700,
     color: 'var(--gold)',
+  },
+  mobileBrandWrap: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  },
+  mobileLogo: {
+    width: 28,
+    height: 28,
+    objectFit: 'contain',
   },
   burger: {
     width: 36,
@@ -147,6 +150,14 @@ const styles = {
     height: 2,
     borderRadius: 999,
     background: 'var(--cream)',
+  },
+  mobileLogout: {
+    padding: '0.35rem 0.75rem',
+    borderRadius: 999,
+    border: '1px solid var(--navy-light)',
+    background: 'var(--navy-light)',
+    color: 'var(--gold-light)',
+    fontSize: '0.8rem',
   },
   mobileNavRow: {
     display: 'flex',
