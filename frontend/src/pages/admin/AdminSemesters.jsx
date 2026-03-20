@@ -105,7 +105,11 @@ export default function AdminSemesters() {
         {loading ? (
           <p style={{ color: 'var(--gold)' }}>Loading…</p>
         ) : semesters.length === 0 ? (
-          <p style={{ color: 'rgba(245,242,235,0.6)' }}>No semesters yet. Upload an Excel file above.</p>
+          <p style={{ color: 'rgba(245,242,235,0.6)' }}>
+            {user?.role === 'admin'
+              ? 'No semesters yet. Upload an Excel file above.'
+              : 'Attendance monitoring will be posted soon!'}
+          </p>
         ) : (
           <div style={styles.tableWrap}>
             <table style={styles.table}>
